@@ -40,3 +40,18 @@ def coupon_freq_mat(c, T, ytm, fv=100, k=1, summary_table=True):
         d_mac += (i / k) * payment_pv
         conv += (i / k) * (i / k + 1 / k) * payment_pv
     pv_last_payment = (coupon + fv) / (1 + ytm / k) ** (T * k)
+    dcf += pv_last_payment
+    d_mac += T * pv_last_payment
+    d_mac /= dcf
+    d_mod = d_mac / (1 + ytm / k)
+    conv += T * (T + 1 / k) * pv_last_payment
+    conv /= dcf * ((1 + ytm / k) ** 2)
+    summary = {
+        "DCF": dcf,
+        "Macaulay duration": d_mac,
+        "Modified duration": d_mod,
+        "Dollar duration": d_mod * dcf / 100,
+        "Convexity": conv,
+        "Dollar convexity": conv * dcf / 100,
+    }
+    print(pd.DataFrame(summary, index=[0]))
