@@ -11,9 +11,9 @@ chosen...), amortization table...
 * The Coupon Rate (c): by definition, the coupon rate is c = k * C / N
 * Price: How much the bond sells for (as opposed to its face value) """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 
 def coupon_freq_mat(c, T, ytm, fv=100, k=1, summary_table=True):
@@ -39,3 +39,4 @@ def coupon_freq_mat(c, T, ytm, fv=100, k=1, summary_table=True):
         dcf += payment_pv
         d_mac += (i / k) * payment_pv
         conv += (i / k) * (i / k + 1 / k) * payment_pv
+    pv_last_payment = (coupon + fv) / (1 + ytm / k) ** (T * k)
