@@ -39,7 +39,9 @@ def coupon_freq_mat(c, T, ytm, fv=100, k=1, summary_table=True):
         dcf += payment_pv
         d_mac += (i / k) * payment_pv
         conv += (i / k) * (i / k + 1 / k) * payment_pv
-    pv_last_payment = (coupon + fv) / (1 + ytm / k) ** (T * k)
+    pv_last_payment = (coupon + fv) / (1 + ytm / k) ** (
+        T * k
+    )  # add the principal payment
     dcf += pv_last_payment
     d_mac += T * pv_last_payment
     d_mac /= dcf
