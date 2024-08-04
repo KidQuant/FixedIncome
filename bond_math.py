@@ -57,3 +57,15 @@ def coupon_freq_mat(c, T, ytm, fv=100, k=1, summary_table=True):
         "Dollar convexity": conv * dcf / 100,
     }
     print(pd.DataFrame(summary, index=[0]))
+
+
+def amortization_table(c, T, ytm, fv=100, k=1, summary_table=True):
+    """
+    Print amoritzation table for the coupon
+    :param c:
+    :param T:
+    :param ytm:
+    :param fv:
+    :param k:
+    :param summary_table:
+    """
