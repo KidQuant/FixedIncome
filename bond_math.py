@@ -69,3 +69,31 @@ def amortization_table(c, T, ytm, fv=100, k=1, summary_table=True):
     :param k:
     :param summary_table:
     """
+
+
+def coupon_continous(c, T, ytm, fv=100):
+    """
+    Purpose: get information about a continously compounded bond
+    :param c:
+    :param T:
+    :param ytm:
+    :param fv:
+    """
+
+
+def dcf(cf, ytm=None, r=None, times=None):
+    """
+    :param cf: np array of cash-flows
+    :param rates: the rates to take into account at diverse horizons
+    :param ytm: yields to maturity, compounded annually
+    :param times: np array of when the cf are made. If None, assumes 1, 2, 3, ...(yearly cf)
+    :return: the thus discounted cash-flow (= value)
+    """
+    dcf = 0
+    if r is None:
+        r = np.repeat(ytm, cf.shape[0])
+    if times is None:
+        times = np.array(range(1, cf.shape[0] + 1))
+    for rate, payment, t in zip(r, cf, times):
+        dcf += payment / (1 + rate) ** t
+    return dcf
