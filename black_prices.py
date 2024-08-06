@@ -88,5 +88,6 @@ def black_caplet(
         * delta
         * (forward_libor * norm.cdf(d_1) - strike * norm.cdf(d_2))
     )
+
     # print("Delta: {}. T_Prev: {}. Vol_t: {}".format(delta, t_prev_expiry, vol_t))
     return caplet_price
